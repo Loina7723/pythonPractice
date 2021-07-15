@@ -2,6 +2,7 @@ package com.example.pythonpractice
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
 import com.chaquo.python.Python
 import com.chaquo.python.android.AndroidPlatform
@@ -19,8 +20,11 @@ class MainActivity : AppCompatActivity() {
 
         pyObj.callAttr("greet", "name")
 
-        val result = pyObj.callAttr("add", 2, 3)
-        findViewById<TextView>(R.id.main_text).text = "Hello ${result.toInt()}"
+        val button: Button = findViewById(R.id.main_button)
+        button.setOnClickListener {
+            val result = pyObj.callAttr("add", 2, 3)
+            findViewById<TextView>(R.id.main_text).text = "Hello ${result.toInt()}"
+        }
     }
 
     fun initPython() {
